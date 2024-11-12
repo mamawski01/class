@@ -3,8 +3,10 @@ import { promises } from "fs";
 export async function deleteImage(path, mess, rule) {
   console.log(path, " deleteImage");
   if (!path || path === undefined) {
-    console.log(`path in deleteImage fx is ${path}, fx=${mess}, rule=${rule}`);
-    return `path in deleteImage fx is ${path}, fx=${mess}, rule=${rule}`;
+    console.log(
+      `path is undefined, deleteImage fx is ${path}, fx=${mess}, rule=${rule}`
+    );
+    return `path is undefined, deleteImage fx is ${path}, fx=${mess}, rule=${rule}`;
   }
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));

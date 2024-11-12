@@ -1,7 +1,46 @@
 "use strict";
+import { Server } from "socket.io";
 
 import { deleteImage } from "../../utils/bHelpers.js";
-import { eventList } from "../bio.js";
+
+export function socketServer(server) {
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+  });
+
+  //second happening, sending data back to FE
+  io.on("connection", (socket) => {
+    eventList.getEvents().forEach((event) => {
+      console.log(eventList.getEvents() + "IO");
+
+      const { f2b, b2f } = { f2b: `${event}F2B`, b2f: `${event}B2F` };
+      socket.on(f2b, (data) => {
+        try {
+          io.emit(b2f, data);
+        } catch (error) {
+          console.error(`Error emitting event ${b2f}: ${error}`);
+        }
+      });
+    });
+  });
+}
+
+class IoEvents {
+  constructor() {
+    this.events = new Set();
+  }
+  addEvent(event) {
+    this.events.add(event);
+  }
+  getEvents() {
+    return [...new Set(this.events)];
+  }
+}
+
+export const eventList = new IoEvents();
 
 class DataHandler {
   /**
@@ -25,25 +64,19 @@ export default class BApi {
   constructor() {}
 
   static async simpleGetAll(rq, rs, model, mess) {
-    return BApi._handleRequest(rq, rs, model.find(), mess, "simpleGetAll");
+    return BApi.simpleReq(rq, rs, model.find(), mess, "simpleGetAll");
   }
 
   static async simpleGetAllLocal(rq, rs, model, mess) {
-    return BApi._handleRequest(rq, rs, model, mess, "simpleGetLocal");
+    return BApi.simpleReq(rq, rs, model, mess, "simpleGetLocal");
   }
 
   static async simpleGetOne(rq, rs, model, mess) {
     const { id } = rq.params;
-    return BApi._handleRequest(
-      rq,
-      rs,
-      model.findById(id),
-      mess,
-      "simpleGetOne"
-    );
+    return BApi.simpleReq(rq, rs, model.findById(id), mess, "simpleGetOne");
   }
 
-  static async _handleRequest(rq, rs, promise, mess, rule) {
+  static async simpleReq(rq, rs, promise, mess, rule) {
     try {
       const data = await promise;
       eventList.addEvent(mess);
