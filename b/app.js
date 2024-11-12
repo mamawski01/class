@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import http from "http";
+import { Server } from "socket.io";
 
 import { routes } from "./src/routes/routes.js";
-// import { socketServer } from "./src/routes/bio.js";
 
 dotenv.config();
 const PORT = process.env.PORT || process.env.API_PORT;
@@ -18,7 +18,21 @@ app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
 const server = http.createServer(app);
-// socketServer(server);
+
+export const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(socket);
+  socket.on("registryUserBEGetAllF2B", (data) => {
+    console.log(data);
+    io.emit("registryUserBEGetAllB2F", data);
+  });
+});
 
 mongoose
   .connect(process.env.MONGO_URI)

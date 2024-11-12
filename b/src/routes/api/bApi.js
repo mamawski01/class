@@ -1,13 +1,14 @@
 "use strict";
 
 import { deleteImage } from "../../utils/bHelpers.js";
+import { eventList } from "../bio.js";
 
 class DataHandler {
-  constructor(rs, data) {
-    this.rs = rs;
-    this.data = data;
-  }
-  static isFound(data, rs, mess, rule) {
+  /**
+   * @method
+   */
+  constructor() {}
+  static isFound(rs, data, mess, rule) {
     return rs.status(200).send({ data, "fx=": mess, "rule=": rule });
   }
   static ifError(rq, rs, error, mess, rule) {
@@ -18,13 +19,38 @@ class DataHandler {
 }
 
 export default class BApi {
+  /**
+   * @method
+   */
   constructor() {}
+
   static async simpleGetAll(rq, rs, model, mess) {
+    return BApi._handleRequest(rq, rs, model.find(), mess, "simpleGetAll");
+  }
+
+  static async simpleGetAllLocal(rq, rs, model, mess) {
+    return BApi._handleRequest(rq, rs, model, mess, "simpleGetLocal");
+  }
+
+  static async simpleGetOne(rq, rs, model, mess) {
+    const { id } = rq.params;
+    return BApi._handleRequest(
+      rq,
+      rs,
+      model.findById(id),
+      mess,
+      "simpleGetOne"
+    );
+  }
+
+  static async _handleRequest(rq, rs, promise, mess, rule) {
     try {
-      const data = await model.find();
-      return DataHandler.isFound(data, rs, mess, "simpleGetAll");
+      const data = await promise;
+      eventList.addEvent(mess);
+      console.log(eventList.getEvents());
+      return DataHandler.isFound(rs, data, mess, rule);
     } catch (error) {
-      return DataHandler.ifError(rq, rs, error, mess, "simpleGetAll");
+      return DataHandler.ifError(rq, rs, error, mess, rule);
     }
   }
 }

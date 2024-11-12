@@ -10,3 +10,7 @@ export const routes = express.Router();
 routes.get("/registryUserBEGetAll", (rq, rs) =>
   BApi.simpleGetAll(rq, rs, RegistryUserModel, "registryUserBEGetAll")
 );
+
+routes.get("/registryUserBEGetOne/:id", (rq, rs) =>
+  BApi.simpleGetOne(rq, rs, RegistryUserModel, "registryUserBEGetOne")
+);
