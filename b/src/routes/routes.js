@@ -3,8 +3,12 @@ import express from "express";
 
 import BApi from "./api/bApi.js";
 import RegistryUserModel from "./api/models/RegistryUserModel.js";
+import { upload } from "../utils/multer.js";
 
 export const routes = express.Router();
+
+const userImgFolLoc = "userImgFol";
+const userImgFolName = "userImg";
 
 //registryUser
 routes.get("/registryUserBEGetAll", (rq, rs) =>
@@ -14,3 +18,44 @@ routes.get("/registryUserBEGetAll", (rq, rs) =>
 routes.get("/registryUserBEGetOne/:id", (rq, rs) =>
   BApi.simpleGetOne(rq, rs, RegistryUserModel, "registryUserBEGetOne")
 );
+
+routes.post(
+  "/registryUserBEPostOne",
+  upload(userImgFolLoc, userImgFolName).single("image"),
+  (rq, rs) =>
+    BApi.registryUserBEPostOne(
+      rq,
+      rs,
+      "registryUserBEPostOne",
+      RegistryUserModel,
+      "registryUserBEPostOne",
+      userImgFolLoc
+    )
+);
+
+routes.patch(
+  "/registryUserBEPatchOne/:id",
+  upload(userImgFolLoc, userImgFolName).single("image"),
+  (rq, rs) =>
+    BApi.registryUserBEPatchOne(
+      rq,
+      rs,
+      "registryUserBEPatchOne",
+      RegistryUserModel,
+      "registryUserBEPatchOne",
+      userImgFolLoc
+    )
+);
+
+routes.delete("/registryUserBEDeleteOne/:id", (rq, rs) =>
+  BApi.registryUserBEDeleteOne(
+    rq,
+    rs,
+    "registryUserBEDeleteOne",
+    RegistryUserModel,
+    "registryUserBEDeleteOne",
+    userImgFolLoc
+  )
+);
+
+//confirmedUser

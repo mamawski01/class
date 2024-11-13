@@ -6,15 +6,15 @@ import MainSideBar from "./MainSideBar";
 
 export default function AppLayout() {
   return (
-    <>
-      {/* <MainHeader></MainHeader> */}
-      {/* <MainSection>
-        <MainSideBar></MainSideBar> */}
+    <div className=" h-screen ">
+      <MainHeader></MainHeader>
+      <MainSection>
+        <MainSideBar></MainSideBar>
         <Main>
           <Outlet></Outlet>
           <ScrollRestoration />
         </Main>
-      {/* </MainSection> */}
-    </>
+      </MainSection>
+    </div>
   );
 }
