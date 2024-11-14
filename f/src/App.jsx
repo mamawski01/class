@@ -10,7 +10,6 @@ import Homepage from "./pages/mainPage/Homepage";
 import Error from "./error/Error";
 import GlobalProvider from "./context/GlobalProvider";
 import AppLayout from "./layout/AppLayout";
-import { Children } from "react";
 
 const routes = [
   {
@@ -20,6 +19,10 @@ const routes = [
       {
         index: true,
         element: <Navigate replace to="homepage" />,
+      },
+      {
+        path: "*",
+        element: <Navigate replace to="/homepage" />,
       },
       {
         path: "homepage",

@@ -1,11 +1,11 @@
-import { useFetch } from "../../reusable/hooks/useFetch";
+// import { useFetch } from "../../reusable/hooks/useFetch";
 
 export default function Homepage() {
-  const { data } = useFetch(
-    "/registryUserBEGetAll",
-    "registryUserFEGetAll",
-    "registryUserBEGetAll"
-  );
-  console.log(data);
-  return <div>lol</div>;
+  // const { data } = useFetch(
+  //   "/registryUserBEGetAll",
+  //   "registryUserFEGetAll",
+  //   "registryUserBEGetAll",
+  // );
+  // console.log(data);
+  return <div>Homepage</div>;
 }

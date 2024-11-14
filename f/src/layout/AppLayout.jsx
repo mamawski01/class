@@ -6,7 +6,7 @@ import MainSideBar from "./MainSideBar";
 
 export default function AppLayout() {
   return (
-    <div className=" h-screen ">
+    <div className="scrollbar relative mx-auto h-screen w-full overflow-y-scroll border border-b-0 border-gray-300/20 2xl:w-5/6">
       <MainHeader></MainHeader>
       <MainSection>
         <MainSideBar></MainSideBar>

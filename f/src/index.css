@@ -4,6 +4,24 @@
 
 @layer components {
   body {
-    @apply bg-black text-zinc-300 font-medium font-sans;
+    @apply bg-black font-sans font-medium text-zinc-300;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    @apply h-0 w-0;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply z-20 bg-inherit;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300/20;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-100/20;
   }
 }
