@@ -43,7 +43,7 @@ class IoEvents {
   }
 }
 
-export const eventList = new IoEvents();
+const eventList = new IoEvents();
 
 class DataHandler {
   /**

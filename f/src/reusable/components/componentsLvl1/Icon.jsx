@@ -9,7 +9,7 @@ export default function Icon({
     ? children[1]?.props?.children
     : "Icon";
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center">
       <div className={iconWith} title={title}>
         {Array.isArray(children) ? children[0] : children}
       </div>

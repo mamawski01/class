@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function SideBarOption({ children = <p>Option</p> }) {
   const [collapse, collapseSet] = useState(false);
   return (
-    <div className="w-full">
+    <div className="mb-2 w-full">
       <Btn onClick={() => collapseSet(!collapse)} ghost={true}>
         <div>{Array.isArray(children) ? children[0] : children}</div>
         <div

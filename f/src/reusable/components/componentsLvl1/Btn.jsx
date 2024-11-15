@@ -4,9 +4,10 @@ export default function Btn({
   children = <p>Btn</p>,
   ghost = false,
   to = "",
+  flexCol = false,
   onClick = () => {},
 }) {
-  const style = `${ghost && `hover:bg-zinc-900`} flex w-full items-center justify-between rounded p-1`;
+  const style = `${ghost && `hover:bg-zinc-900`} ${flexCol && `flex-col`} flex w-full items-center justify-between rounded p-1 transition-all duration-300 `;
 
   if (to)
     return (
@@ -15,7 +16,7 @@ export default function Btn({
       </Link>
     );
   return (
-    <button onClick={onClick} className={`${style}`}>
+    <button onClick={onClick} className={`${style} `}>
       {children}
     </button>
   );
@@ -26,4 +27,5 @@ Btn.propTypes = {
   ghost: PropTypes.bool,
   onClick: PropTypes.func,
   to: PropTypes.string,
+  flexCol: PropTypes.bool,
 };

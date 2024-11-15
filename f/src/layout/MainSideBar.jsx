@@ -1,4 +1,7 @@
-import { UserGroupIcon } from "@heroicons/react/24/solid";
+import {
+  UserGroupIcon,
+  WrenchScrewdriverIcon,
+} from "@heroicons/react/24/solid";
 import Icon from "../reusable/components/componentsLvl1/Icon";
 import SideBarOption from "../reusable/components/componentsLvl2/SideBarOption";
 import H1mdAndUp from "../reusable/components/basicComponents/H1mdAndUp";
@@ -15,11 +18,7 @@ export default function MainSideBar() {
           <H1mdAndUp>Manage Staff</H1mdAndUp>
           <H1smOnly>Man. Staff</H1smOnly>
         </Icon>
-        <Btn to="/" ghost={true}>
-          <H1mdAndUp>Attendance and Benefits</H1mdAndUp>
-          <H1smOnly>Att. & Ben.</H1smOnly>
-        </Btn>
-        <Btn to="/" ghost={true}>
+        <Btn to="homepage/registryUser" ghost={true}>
           <H1mdAndUp>Registry User List</H1mdAndUp>
           <H1smOnly>Reg. User</H1smOnly>
         </Btn>
@@ -27,10 +26,15 @@ export default function MainSideBar() {
           <H1mdAndUp>Confirmed User List</H1mdAndUp>
           <H1smOnly>Conf. User </H1smOnly>
         </Btn>
+        <Btn to="/" ghost={true}>
+          <H1mdAndUp>Attendance and Benefits</H1mdAndUp>
+          <H1smOnly>Att. & Ben.</H1smOnly>
+        </Btn>
       </SideBarOption>
+      <H1small>Utility</H1small>
       <SideBarOption>
         <Icon>
-          <UserGroupIcon></UserGroupIcon>
+          <WrenchScrewdriverIcon></WrenchScrewdriverIcon>
           <H1mdAndUp>Utilities</H1mdAndUp>
           <H1smOnly>Utils.</H1smOnly>
         </Icon>

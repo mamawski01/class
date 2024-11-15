@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { GlobalContext } from "./GlobalContext";
-import { usePreFetch } from "../reusable/hooks/useFetch";
+import { usePreFetch } from "../reusable/hooks/useHook1";
 
 export default function GlobalProvider({ children }) {
   usePreFetch(
     "/registryUserBEGetAll",
     "registryUserFEGetAll",
-    "registryUserBEGetAll"
+    "registryUserBEGetAll",
   );
   return <GlobalContext.Provider value={{}}>{children}</GlobalContext.Provider>;
 }

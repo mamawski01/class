@@ -1,11 +1,7 @@
-// import { useFetch } from "../../reusable/hooks/useFetch";
+import { useDocumentTitle } from "../../reusable/hooks/useHook1";
 
 export default function Homepage() {
-  // const { data } = useFetch(
-  //   "/registryUserBEGetAll",
-  //   "registryUserFEGetAll",
-  //   "registryUserBEGetAll",
-  // );
-  // console.log(data);
+  useDocumentTitle();
+
   return <div>Homepage</div>;
 }
