@@ -1,21 +1,27 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 import { useRouteError } from "react-router-dom";
-import Btn from "../componentsLvl1/Btn";
+import Btn from "./Btn";
+import { useRefresh } from "../../hooks/useHook0";
+import ContentBox0 from "../componentsLvl2/ContentBox0";
 
 export default function Error() {
   const error = useRouteError();
+  useRefresh();
 
   return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <div className="flex w-fit">
-        <Btn to="/" ghost={true} flexCol={true}>
-          <div className="flex w-96 animate-pulse justify-center">
-            <ExclamationTriangleIcon></ExclamationTriangleIcon>
-          </div>
-          <div>{error.data || error.message}</div>
-        </Btn>
+    <ContentBox0>
+      <div className="flex h-screen w-full items-center justify-center">
+        <div className="flex w-fit">
+          <Btn to="/" ghost={true} flexCol={true}>
+            <div className="flex w-96 animate-pulse justify-center">
+              <ExclamationTriangleIcon></ExclamationTriangleIcon>
+            </div>
+            <p>Click Here to go to Homepage.</p>
+            <div>{error.data || error.message}</div>
+          </Btn>
+        </div>
       </div>
-    </div>
+    </ContentBox0>
   );
 }
 

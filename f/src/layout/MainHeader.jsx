@@ -1,6 +1,6 @@
-import Avatar from "../reusable/components/basicComponents/Avatar";
-import H1mdAndUp from "../reusable/components/basicComponents/H1mdAndUp";
-import H1smOnly from "../reusable/components/basicComponents/H1smOnly";
+import Avatar from "../reusable/components/componentsLv0/Avatar";
+import H1mdAndUp from "../reusable/components/componentsLv0/H1mdAndUp";
+import H1smOnly from "../reusable/components/componentsLv0/H1smOnly";
 import Logo from "../reusable/components/componentsLvl1/Logo";
 
 export default function MainHeader() {

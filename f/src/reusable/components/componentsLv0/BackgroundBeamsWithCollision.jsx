@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../lib/utils0";
 
 export default function BackgroundBeamsWithCollision({ children }) {
   const containerRef = useRef(null);

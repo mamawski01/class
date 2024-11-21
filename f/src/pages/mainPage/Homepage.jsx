@@ -1,7 +1,5 @@
-import { useDocumentTitle } from "../../reusable/hooks/useHook1";
+import ContentBox0 from "../../reusable/components/componentsLvl2/ContentBox0";
 
 export default function Homepage() {
-  useDocumentTitle();
-
-  return <div>Homepage</div>;
+  return <ContentBox0>Homepage</ContentBox0>;
 }

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export default function MainSection({ children }) {
-  return <section className="mx-auto flex w-full">{children}</section>;
+  return <section className="mx-auto flex w-full flex-1">{children}</section>;
 }
 
 MainSection.propTypes = {

@@ -17,18 +17,18 @@ const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-const server = http.createServer(app);
+export const server = http.createServer(app);
 socketServer(server);
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    server.listen(PORT, () => {
-      console.log(localhost + " connected to db");
-    });
-  })
-  .catch((err) => {
+async function connectToDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log(localhost + " connected to db");
+    server.listen(PORT);
+  } catch (err) {
     console.log("Db and server fail" + err);
-  });
+  }
+}
+connectToDB();
 
 app.use("/", routes);

@@ -7,10 +7,11 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Homepage from "./pages/mainPage/Homepage";
-import Error from "./reusable/components/basicComponents/Error";
 import GlobalProvider from "./context/GlobalProvider";
 import AppLayout from "./layout/AppLayout";
-import RegistryUser from "./pages/staff/RegistryUser";
+import RegistryUserList from "./pages/staff/RegistryUserList";
+import Error from "./reusable/components/componentsLvl1/Error";
+import RegistryUserForm from "./pages/staff/RegistryUserForm";
 
 const routes = [
   {
@@ -31,8 +32,12 @@ const routes = [
       },
 
       {
-        path: "homepage/registryUser",
-        element: <RegistryUser />,
+        path: "homepage/registryUserList",
+        element: <RegistryUserList />,
+      },
+      {
+        path: "homepage/registryUserList/registryUserForm",
+        element: <RegistryUserForm />,
       },
     ],
   },

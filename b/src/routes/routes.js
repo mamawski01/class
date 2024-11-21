@@ -1,7 +1,7 @@
 "use strict";
 import express from "express";
 
-import BApi from "./api/bApi.js";
+import BApi, { BApiCustom } from "./api/bApi.js";
 import RegistryUserModel from "./api/models/RegistryUserModel.js";
 import { upload } from "../utils/multer.js";
 
@@ -23,7 +23,7 @@ routes.post(
   "/registryUserBEPostOne",
   upload(userImgFolLoc, userImgFolName).single("image"),
   (rq, rs) =>
-    BApi.registryUserBEPostOne(
+    BApiCustom.registryUserBEPostOne(
       rq,
       rs,
       "registryUserBEPostOne",
@@ -37,7 +37,7 @@ routes.patch(
   "/registryUserBEPatchOne/:id",
   upload(userImgFolLoc, userImgFolName).single("image"),
   (rq, rs) =>
-    BApi.registryUserBEPatchOne(
+    BApiCustom.registryUserBEPatchOne(
       rq,
       rs,
       "registryUserBEPatchOne",
@@ -48,7 +48,7 @@ routes.patch(
 );
 
 routes.delete("/registryUserBEDeleteOne/:id", (rq, rs) =>
-  BApi.registryUserBEDeleteOne(
+  BApiCustom.registryUserBEDeleteOne(
     rq,
     rs,
     "registryUserBEDeleteOne",

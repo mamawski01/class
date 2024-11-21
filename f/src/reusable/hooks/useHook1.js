@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useLocation } from "react-router-dom";
 
 import Api, { fSocket } from "../../api/api";
-import { StrPhrase } from "../../lib/utils";
 
 export function useFetch(url, mess, f2b, u1, u2, u3, u4, u5, u6, u7) {
   const { data, refetch, isFetching } = useQuery({
@@ -51,16 +49,4 @@ export function useGet(b2f) {
     apiDataSet(data);
   });
   return apiData;
-}
-
-export function useDocumentTitle() {
-  const location = useLocation();
-  const docTitle = StrPhrase.capEach1stLetter(
-    location.pathname.split("/").pop(),
-  );
-
-  //go to index.html, edit the <title></title>
-  const documentTitleStr = `${docTitle} | Tiberio Optical`;
-
-  return (document.title = documentTitleStr);
 }

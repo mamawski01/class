@@ -4,31 +4,37 @@ import bcrypt from "bcryptjs";
 
 import { deleteImage, fileUrl } from "../../utils/bHelpers.js";
 import { imgLoc } from "../../utils/multer.js";
+import { server } from "../../../app.js";
+import { errorValue, TypeCheck } from "../../utils/errorChecker.js";
 
-export function socketServer(server) {
-  const io = new Server(server, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-    },
-  });
+export function socketServer(socketServe) {
+  if (socketServe === server) {
+    const io = new Server(socketServe, {
+      cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+      },
+    });
 
-  //second happening, sending data back to FE
-  io.on("connection", (socket) => {
-    const events = eventList.getEvents();
-    for (let i = 0; i < events.length; i++) {
-      const event = events[i];
-      const { f2b, b2f } = { f2b: `${event}F2B`, b2f: `${event}B2F` };
-      console.log(f2b, b2f);
-      socket.on(f2b, (data) => {
-        try {
-          io.emit(b2f, data);
-        } catch (error) {
-          console.error(`Error emitting event ${b2f}: ${error}`);
-        }
-      });
-    }
-  });
+    //second happening, sending data back to FE
+    io.on("connection", (socket) => {
+      const events = eventList.getEvents();
+      for (let i = 0; i < events.length; i++) {
+        const event = events[i];
+        const { f2b, b2f } = { f2b: `${event}F2B`, b2f: `${event}B2F` };
+        console.log(f2b, b2f);
+        socket.on(f2b, (data) => {
+          try {
+            io.emit(b2f, data);
+          } catch (error) {
+            console.error(`Error emitting event ${b2f}: ${error}`);
+          }
+        });
+      }
+    });
+    return;
+  }
+  throw new Error("SocketServer Params Problem");
 }
 
 class IoEvents {
@@ -36,7 +42,10 @@ class IoEvents {
     this.events = new Set();
   }
   addEvent(event) {
-    this.events.add(event);
+    if (TypeCheck.string(event)) {
+      return this.events.add(event);
+    }
+    return errorValue(event);
   }
   getEvents() {
     return [...new Set(this.events)];
@@ -115,6 +124,23 @@ export default class BApi {
       "simpleGetOne"
     );
   }
+
+  static async _simpleReq(rq, rs, promise, mess, rule) {
+    try {
+      const data = await promise;
+      eventList.addEvent(mess);
+      return DataHandler.isFound(rs, data, mess, rule);
+    } catch (error) {
+      return DataHandler.ifError(rq, rs, error, mess, rule);
+    }
+  }
+}
+
+export class BApiCustom {
+  /**
+   * @method
+   */
+  constructor() {}
 
   static async registryUserBEPostOne(
     rq,
@@ -213,15 +239,5 @@ export default class BApi {
       mess,
       customRule
     );
-  }
-
-  static async _simpleReq(rq, rs, promise, mess, rule) {
-    try {
-      const data = await promise;
-      eventList.addEvent(mess);
-      return DataHandler.isFound(rs, data, mess, rule);
-    } catch (error) {
-      return DataHandler.ifError(rq, rs, error, mess, rule);
-    }
   }
 }

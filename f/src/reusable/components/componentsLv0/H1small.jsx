@@ -4,5 +4,5 @@ export default function H1small({ children = "H1small" }) {
 }
 
 H1small.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
 };

@@ -10,7 +10,7 @@ const MIME_TYPE_MAP = {
 };
 
 export function imgLoc(loc = "") {
-  return "../n/uploads/" + loc;
+  return "../i/uploads/" + loc;
 }
 
 export function imageName(imgName = "") {
@@ -30,14 +30,14 @@ export const upload = (folName = "userImgFolder", imgName = "userImg") => {
   return multer({
     limits: 50000,
     storage: multer.diskStorage({
-      destination: function (rq, file, cb) {
+      destination: function (_rq, _file, cb) {
         cb(null, imgLoc(folName));
       },
-      filename: function (rq, file, cb) {
+      filename: function (_rq, file, cb) {
         cb(null, imageName(imgName) + path.extname(file.originalname));
       },
     }),
-    fileFilter: (rq, file, cb) => {
+    fileFilter: (_rq, file, cb) => {
       const isValid = !!MIME_TYPE_MAP[file.mimetype];
       let error = isValid ? null : new Error("Invalid mime type!");
       cb(error, isValid);

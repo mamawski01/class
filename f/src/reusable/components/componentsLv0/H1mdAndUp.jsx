@@ -9,5 +9,5 @@ export default function H1mdAndUp({ children = "H1mdAndUp" }) {
 }
 
 H1mdAndUp.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
 };
