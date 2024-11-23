@@ -1,30 +1,22 @@
-import toast, { ErrorIcon } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 
 import ContentBox0 from "../../reusable/components/componentsLvl2/ContentBox0";
 import H1MainTitle from "../../reusable/components/componentsLv0/H1MainTitle";
 import Form from "../../reusable/components/componentslvl3/Form";
-import Toast from "../../reusable/components/componentsLvl1/Toast";
-import Icon from "../../reusable/components/componentsLvl1/Icon";
-import Btn from "../../reusable/components/componentsLvl1/Btn";
 import Row from "../../reusable/components/componentsLv0/Row";
 import Label from "../../reusable/components/componentsLv0/Label";
-import Input from "../../reusable/components/componentsLv0/Input";
+import FormInput from "../../reusable/components/componentsLvl1/FormInput";
+import ToastError from "../../reusable/components/componentsLvl2/ToastError";
+import Select from "../../reusable/components/componentsLv0/Select";
+import Date from "../../reusable/components/componentsLv0/Date";
 
 function onError() {
-  return toast.custom(
-    <Toast>
-      <Icon>
-        <ErrorIcon></ErrorIcon>
-        <p>Missing fields required.</p>
-      </Icon>
-    </Toast>,
-  );
+  return toast.custom(<ToastError>Missing Field(s).</ToastError>);
 }
 export default function RegistryUserForm() {
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-
   async function onSubmit(data) {
     console.log(data);
   }
@@ -34,25 +26,63 @@ export default function RegistryUserForm() {
       <H1MainTitle>Registry User Form</H1MainTitle>
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <Row>
-          <Label htmlFor="name">
-            Name
-            <Input id="name" reg={register} />
+          <Label htmlFor="firstName">
+            first name
+            <FormInput
+              id="firstName"
+              reg={register}
+              isRequired={{ required: `firstName is required` }}
+              errors={errors}
+            />
           </Label>
-          <Label htmlFor="age">
-            Age
-            <Input id="age" reg={register} />
+          <Label htmlFor="middleName">
+            middle name
+            <FormInput
+              id="middleName"
+              reg={register}
+              isRequired={{ required: `middleName is required` }}
+              errors={errors}
+            />
           </Label>
-          <Label htmlFor="car">
-            car
-            <Input id="car" reg={register} />
+          <Label htmlFor="lastName">
+            last name
+            <FormInput
+              id="lastName"
+              reg={register}
+              isRequired={{ required: `lastName is required` }}
+              errors={errors}
+            />
           </Label>
-          <Label htmlFor="dog">
-            dog
-            <Input id="dog" reg={register} />
+          <Label htmlFor="position">
+            position
+            <Select
+              id="position"
+              reg={register}
+              isRequired={{ required: `Position is required.` }}
+              errors={errors}
+              options={["sales", "cashier", "optometrist"]}
+            />
+          </Label>
+          <Label htmlFor="status">
+            status
+            <Select
+              id="status"
+              reg={register}
+              isRequired={{ required: `status is required.` }}
+              errors={errors}
+              options={["single", "married"]}
+            />
+          </Label>
+          <Label htmlFor="birthdate">
+            birthdate
+            <Date
+              id="birthdate"
+              reg={register}
+              isRequired={{ required: `birthdate is required.` }}
+              errors={errors}
+            />
           </Label>
         </Row>
-
-        <Btn type="submit" ghost={true}></Btn>
       </Form>
     </ContentBox0>
   );

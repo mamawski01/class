@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 export default function Icon({
   children = <BoltIcon></BoltIcon>,
-  iconWith = "w-5",
+  iconWidth = "w-5",
 }) {
   const title = children[1]?.props?.children
     ? children[1]?.props?.children
     : "Icon";
   return (
     <div className="flex items-center">
-      <div className={iconWith} title={title}>
+      <div className={iconWidth} title={title}>
         {Array.isArray(children) ? children[0] : children}
       </div>
       <div className="p-1">
@@ -31,5 +31,5 @@ export default function Icon({
 
 Icon.propTypes = {
   children: PropTypes.node,
-  iconWith: PropTypes.string,
+  iconWidth: PropTypes.string,
 };

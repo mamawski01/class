@@ -22,7 +22,7 @@ export default function RegistryUserList() {
           <CreateSomething>
             <p>List is empty, create something...</p>
             <div>
-              <Btn ghost={true} link={true} to="registryUserForm">
+              <Btn link={true} to="registryUserForm">
                 Add User
               </Btn>
             </div>

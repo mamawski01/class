@@ -22,14 +22,14 @@ export default function SideBarOption({ children = <p>Option</p> }) {
       <div
         className={`px-3 transition-all duration-500 ${collapse ? "max-h-screen" : "max-h-0"} overflow-hidden text-sm`}
       >
-        <li className="flex flex-col gap-2 border-l border-gray-300/20 p-1 px-2">
+        <ul className="flex flex-col gap-2 border-l border-gray-300/20 p-1 px-2">
           {children.length > 1 &&
             children.slice(1).map((node, i) => (
               <ul key={i} title={node.props.children}>
                 {node}
               </ul>
             ))}
-        </li>
+        </ul>
       </div>
     </div>
   );

@@ -12,8 +12,7 @@ export class StrPhrase {
     if (TypeCheck.array(arr)) {
       return arr.map((item) => item.charAt(0).toUpperCase() + item.slice(1));
     }
-    // console.log(str);
-    // return str.replace(/\b\w/g, (char) => char.toUpperCase());
+    throw new Error("Error in StrPhrase.capEach1stLetter");
   }
 }
 
@@ -30,3 +29,16 @@ class UniqueOnly {
 }
 
 export const uniqueOnly = new UniqueOnly();
+
+export class HoverColor {
+  constructor() {}
+  static alert() {
+    return `hover:bg-red-950`;
+  }
+  static warn() {
+    return `hover:bg-yellow-800`;
+  }
+  static save() {
+    return `hover:bg-green-950`;
+  }
+}

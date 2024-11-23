@@ -10,7 +10,7 @@ import H1small from "../reusable/components/componentsLv0/H1small";
 import Btn from "../reusable/components/componentsLvl1/Btn";
 export default function MainSideBar() {
   return (
-    <div className="scrollbar over hidden flex-col gap-2 border-r border-gray-300/20 p-5 px-2 hover:overflow-y-scroll sm:flex sm:w-52">
+    <div className="scrollbar over hidden flex-col gap-2 border-r border-gray-300/20 p-5 px-2 hover:overflow-y-scroll md:flex md:w-56 md:flex-nowrap">
       <H1small>Staff</H1small>
       <SideBarOption>
         <Icon>

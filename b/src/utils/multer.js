@@ -10,7 +10,7 @@ const MIME_TYPE_MAP = {
 };
 
 export function imgLoc(loc = "") {
-  return "../i/uploads/" + loc;
+  return "./images/uploads/" + loc;
 }
 
 export function imageName(imgName = "") {
