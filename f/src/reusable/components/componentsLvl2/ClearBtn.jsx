@@ -12,7 +12,7 @@ export default function ClearBtn() {
       type="reset"
       hoverColor={HoverColor.warn()}
       onClick={() => {
-        reset({});
+        reset({ firstName: "bill" });
       }}
     >
       <Icon>

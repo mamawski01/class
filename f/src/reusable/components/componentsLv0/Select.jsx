@@ -11,6 +11,7 @@ export default function Select({
   options = ["cat", "dog", "Mouse", "Cow"],
   isRequired = "",
   errors = "",
+  hookValue,
 }) {
   const [collapse, collapseSet] = useState(false);
   const optionRef = useRef();
@@ -35,16 +36,14 @@ export default function Select({
 
   const [inputVal, inputValSet] = useState(options[0]);
   const [searchInput, searchInputSet] = useState(options[0]);
-
   const searchResult = options.filter((option) =>
     option.toLowerCase().includes(searchInput.toLowerCase()),
   );
-
   const isOptionChosen = searchResult[0] === searchInput;
 
   return (
     <motion.div
-      className="flex w-max flex-col"
+      className="flex w-48 flex-col"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -55,11 +54,9 @@ export default function Select({
           id={id}
           title={id}
           type="text"
-          value={inputVal}
-          onChange={(e) => inputValSet(e.target.value)}
           {...reg(id, isRequired)}
           className="absolute -z-50 opacity-0"
-          onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+          onChange={hookValue(id, "")}
         />
         <input
           value={searchInput}
@@ -69,7 +66,9 @@ export default function Select({
             collapseSet(!collapse);
             searchInputSet("");
             inputValSet("");
+            hookValue(id, inputVal);
           }}
+          onKeyDown={hookValue(id, inputVal)}
         ></input>
         <div
           className={`${collapse && "rotate-90"} absolute right-0 top-2 transition-all duration-500`}
@@ -117,4 +116,5 @@ Select.propTypes = {
   options: PropTypes.array,
   isRequired: PropTypes.object,
   errors: PropTypes.object,
+  hookValue: PropTypes.func,
 };
