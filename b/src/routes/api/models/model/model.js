@@ -20,7 +20,7 @@ export function UserModel() {
     country: { type: String, required: [true, "Country is required."] },
     contactNumber1: {
       type: String,
-      required: [true, "Contact number 1 is required."],
+      required: [true, "Contact number at least 1 is required."],
     },
     contactNumber2: { type: String },
     contactNumber3: { type: String },
