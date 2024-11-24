@@ -24,4 +24,8 @@
   .scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-100/20;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+  }
 }

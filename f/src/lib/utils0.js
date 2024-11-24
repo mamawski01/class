@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { TypeCheck } from "./errorChecker";
+import Joi from "joi";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -9,10 +9,14 @@ export function cn(...inputs) {
 export class StrPhrase {
   constructor() {}
   static capEach1stLetter(arr) {
-    if (TypeCheck.array(arr)) {
-      return arr.map((item) => item.charAt(0).toUpperCase() + item.slice(1));
+    const schema = Joi.object({
+      arr: Joi.array().items(Joi.string()).required(),
+    });
+    const result = schema.validate({ arr });
+    if (result.error) {
+      throw new TypeError(result.error.message);
     }
-    throw new Error("Error in StrPhrase.capEach1stLetter");
+    return arr.map((item) => item.charAt(0).toUpperCase() + item.slice(1));
   }
 }
 

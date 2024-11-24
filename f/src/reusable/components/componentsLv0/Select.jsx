@@ -80,11 +80,11 @@ export default function Select({
       </div>
       <div
         ref={optionRef2}
-        className={`px-3 transition-all duration-500 ${collapse && searchResult.length > 0 ? "h-fit border-gray-300/20 p-3" : "max-h-0 border-none"} absolute z-10 mt-12 w-max overflow-hidden overflow-y-auto rounded border bg-black/60 text-sm backdrop-blur-sm`}
+        className={`px-3 transition-all duration-500 ${collapse && searchResult.length > 0 ? "max-h-screen border-gray-300/20 p-3" : "max-h-0 border-none"} no-scrollbar absolute z-10 mt-12 w-max overflow-hidden overflow-y-auto rounded border bg-black/60 text-sm backdrop-blur-sm`}
       >
-        <ul className={`flex flex-col gap-2 transition-all duration-500`}>
+        <div className={`flex flex-col gap-2 transition-all duration-500`}>
           {searchResult.slice().map((option, i) => (
-            <motion.li
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -97,9 +97,9 @@ export default function Select({
               key={i}
             >
               {option}
-            </motion.li>
+            </motion.div>
           ))}
-        </ul>
+        </div>
       </div>
       <div
         className={`${errors?.[id]?.message || !isOptionChosen ? `animate-pulse text-red-500` : `text-black`} transition-all duration-500`}

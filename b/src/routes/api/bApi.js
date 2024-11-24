@@ -1,11 +1,11 @@
 "use strict";
 import { Server } from "socket.io";
 import bcrypt from "bcryptjs";
+import Joi from "joi";
 
 import { deleteImage, fileUrl } from "../../utils/bHelpers.js";
 import { imgLoc } from "../../utils/multer.js";
 import { server } from "../../../app.js";
-import { errorValue, TypeCheck } from "../../utils/errorChecker.js";
 
 export function socketServer(socketServe) {
   if (socketServe === server) {
@@ -42,10 +42,14 @@ class IoEvents {
     this.events = new Set();
   }
   addEvent(event) {
-    if (TypeCheck.string(event)) {
-      return this.events.add(event);
+    const schema = Joi.object({
+      event: Joi.string().required(),
+    });
+    const result = schema.validate({ event });
+    if (result.error) {
+      throw new TypeError(result.error.message);
     }
-    return errorValue(event);
+    return this.events.add(event);
   }
   getEvents() {
     return [...new Set(this.events)];
