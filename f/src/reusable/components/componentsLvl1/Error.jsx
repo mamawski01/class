@@ -6,7 +6,7 @@ import ContentBox0 from "../componentsLvl2/ContentBox0";
 
 export default function Error() {
   const error = useRouteError();
-  useRefresh();
+  // useRefresh();
 
   return (
     <ContentBox0>

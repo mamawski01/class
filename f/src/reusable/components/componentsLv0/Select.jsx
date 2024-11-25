@@ -111,10 +111,10 @@ export default function Select({
 }
 
 Select.propTypes = {
-  id: PropTypes.string,
-  reg: PropTypes.func,
-  options: PropTypes.array,
-  isRequired: PropTypes.object,
   errors: PropTypes.object,
   hookValue: PropTypes.func,
+  id: PropTypes.string,
+  isRequired: PropTypes.object,
+  options: PropTypes.array,
+  reg: PropTypes.func,
 };

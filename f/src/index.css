@@ -28,4 +28,8 @@
   .no-scrollbar::-webkit-scrollbar {
     @apply hidden;
   }
+
+  .inputBtn-color::-webkit-file-upload-button {
+    @apply cursor-pointer border-none bg-zinc-800 py-1 text-zinc-100 transition-all duration-500 hover:bg-zinc-700;
+  }
 }

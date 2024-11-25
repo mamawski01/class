@@ -17,7 +17,7 @@ export default function Form({ children = "Form", onSubmit = () => {} }) {
       <form
         onSubmit={onSubmit}
         encType="multipart/form-data"
-        className="flex w-full flex-1 flex-col"
+        className="flex w-full flex-1 flex-col gap-2"
       >
         {children}
         <div className="flex w-full justify-evenly">
