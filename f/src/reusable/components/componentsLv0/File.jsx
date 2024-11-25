@@ -16,7 +16,7 @@ export default function File({
     } else return filePrevSet("/Asset2.png");
   }
   return (
-    <div className="cursor-pointer">
+    <div className="w-48 cursor-pointer">
       <input
         id={id}
         title={id}
@@ -24,7 +24,7 @@ export default function File({
         {...reg(id, isRequired)}
         onChange={(e) => getFilePreview(e)}
         accept={specifyFile}
-        className="inputBtn-color w-full cursor-pointer rounded border border-gray-300/20 bg-inherit text-sm transition-all duration-500 placeholder:text-zinc-500 md:w-48"
+        className="inputBtn-color w-full cursor-pointer rounded border border-gray-300/20 bg-inherit text-sm transition-all duration-500 placeholder:text-zinc-500"
       />
       <div
         className={`${errors?.[id]?.message ? `animate-pulse text-red-500` : `text-black`} transition-all duration-500`}

@@ -1,6 +1,5 @@
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
 
 import ContentBox0 from "../../reusable/components/componentsLvl2/ContentBox0";
 import H1MainTitle from "../../reusable/components/componentsLv0/H1MainTitle";
